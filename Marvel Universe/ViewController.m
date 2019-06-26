@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "MarvelAPIClient.h"
 
 @interface ViewController ()
 
@@ -14,9 +15,16 @@
 
 @implementation ViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    MarvelAPIClient *apiClient = [[MarvelAPIClient alloc] init];
+    
+    NSLog(@"Timestamp String: %@", apiClient.timeStampString);
+    NSLog(@"%@", [apiClient md5]);
+    NSLog(@"Timestamp String: %@", apiClient.timeStampString);
 }
 
 
