@@ -16,6 +16,8 @@ NSString * const privateAPIKey = @"75e1f1be21f180dae80a7e18b6fb020f3365a457";
 NSString * const baseURLString = @"https://gateway.marvel.com";
 NSString * const version = @"v1";
 
+NSString *timeStampString = @"";
+
 - (NSString *) md5
 {
     // get the current time stamp for the request
@@ -24,7 +26,7 @@ NSString * const version = @"v1";
     
     // Create string for MD5 Hash for Marvel API Request
     
-    NSMutableString *md5Input = [NSMutableString stringWithFormat:@"%@%@%@", self.timeStampString, privateAPIKey, publicAPIKey];
+    NSMutableString *md5Input = [NSMutableString stringWithFormat:@"%@%@%@", timeStampString, privateAPIKey, publicAPIKey];
     
     // Convert string to the MD5 encoding
     
@@ -45,7 +47,7 @@ NSString * const version = @"v1";
 - (void) setTimeStampNow
 {
     NSTimeInterval  timeStamp = [[NSDate date] timeIntervalSince1970];
-    self.timeStampString = [NSString stringWithFormat:@"%f", timeStamp];
+    timeStampString = [NSString stringWithFormat:@"%f", timeStamp];
 }
 
 - (NSURL *) getCharactersURL: (int) limit withOffset: (int) offset
@@ -60,7 +62,7 @@ NSString * const version = @"v1";
     
     // Create relative url string
     
-    NSString *relativePath = [NSString stringWithFormat:@"/%@/public/characters?orderBy=name&limit=%i&offset=%i&apikey=%@&ts=%@&hash=%@", version, limit, offset, publicAPIKey, _timeStampString, hashString];
+    NSString *relativePath = [NSString stringWithFormat:@"/%@/public/characters?orderBy=name&limit=%i&offset=%i&apikey=%@&ts=%@&hash=%@", version, limit, offset, publicAPIKey, timeStampString, hashString];
     
     // create full URL for the request
     

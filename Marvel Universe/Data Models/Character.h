@@ -14,8 +14,10 @@ NS_ASSUME_NONNULL_BEGIN
 @interface Character : NSObject
 
 @property (strong, nonatomic) NSNumber *characterID;
-@property (strong, nonatomic) NSString *name;
+@property (strong, nonatomic) NSString *characterName;
 @property (strong, nonatomic) NSString *characterDescription;
+@property (strong, nonatomic) NSString *thumbnailPath;
+@property (strong, nonatomic) NSString *thumbnailExtension;
 @property (strong, nonatomic) UIImage *thumbnail;
 
 @end

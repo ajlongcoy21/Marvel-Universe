@@ -12,13 +12,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface MarvelAPIClient : NSObject
 
-extern NSString *const publicAPIKey;
-extern NSString *const privateAPIKey;
-extern NSString *const baseURL;
-extern NSString *const version;
-
-@property NSString *timeStampString;
-
 - (NSString *) md5;
 - (NSURL *) getCharactersURL: (int) limit withOffset: (int) offset;
 - (NSURL *) getThumbnailURL: (NSString *) path withVariant: (NSString *) variant withExtension: (NSString *) extension;
