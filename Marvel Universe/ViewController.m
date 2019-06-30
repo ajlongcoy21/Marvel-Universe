@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "MarvelAPIClient.h"
+#import "imageVarients.h"
 
 @interface ViewController ()
 
@@ -22,9 +23,9 @@
     
     MarvelAPIClient *apiClient = [[MarvelAPIClient alloc] init];
     
-    NSLog(@"Timestamp String: %@", apiClient.timeStampString);
-    NSLog(@"%@", [apiClient md5]);
-    NSLog(@"Timestamp String: %@", apiClient.timeStampString);
+    [apiClient getCharactersURL:20 withOffset:0];
+    [apiClient getThumbnailURL:@"http://i.annihil.us/u/prod/marvel/i/mg/3/40/4bb4680432f73" withVariant: portraitSmall withExtension:@"jpg"];
+    
 }
 
 
