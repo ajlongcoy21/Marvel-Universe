@@ -68,8 +68,6 @@ NSString *timeStampString = @"";
     
     NSURL *charactersURL = [NSURL URLWithString:relativePath relativeToURL:baseURL];
     
-    NSLog(@"Character URL: %@", charactersURL.absoluteString);
-    
     return charactersURL;
     
 }
@@ -84,9 +82,24 @@ NSString *timeStampString = @"";
     
     NSURL *thumbnailURL = [NSURL URLWithString:urlString];
     
-    NSLog(@"thumbnail URL: %@", thumbnailURL.absoluteString);
-    
     return thumbnailURL;
+}
+
+- (void) alertNotificationForUser: (NSString *) title withMessage: (NSString *) message withViewController: (UIViewController *) currentViewController
+{
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
+    
+    //We add buttons to the alert controller by creating UIAlertActions:
+    UIAlertAction *actionOk = [UIAlertAction actionWithTitle:@"OK"
+                                                       style:UIAlertActionStyleDefault
+                                                     handler:nil]; //You can use a block here to handle a press on this button
+    [alertController addAction:actionOk];
+    
+    dispatch_async(dispatch_get_main_queue(), ^
+     {
+         [currentViewController presentViewController:alertController animated:YES completion:nil];
+     });
+    
 }
 
 @end
