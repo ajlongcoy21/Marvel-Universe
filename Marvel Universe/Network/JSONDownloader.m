@@ -24,12 +24,13 @@
             int httpCode = [[dictionary valueForKey:@"code"] intValue];
             NSString *status = [dictionary valueForKey:@"status"];
             
-            if (httpCode == 200)
+            if (httpCode == 200 || httpCode == 0)
             {
                 completionHandler(data, nil);
             }
             else
             {
+                NSLog(@"%i", httpCode);
                 completionHandler(nil, [MarvelAPIError getMarvelAPIErrorWithCode:httpCode withStatus:status]);
             }
         }

@@ -31,4 +31,6 @@ NSString *const landscapeXLarge = @"landscape_xlarge";
 NSString *const landscapeAmazing = @"landscape_amazing";
 NSString *const landscapeIncredible = @"landscape_incredible";
 
+NSString *const imageNotAvailable = @"image_not_available";
+
 @end

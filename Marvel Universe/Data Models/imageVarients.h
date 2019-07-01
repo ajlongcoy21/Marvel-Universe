@@ -33,6 +33,8 @@ extern NSString *const landscapeXLarge;
 extern NSString *const landscapeAmazing;
 extern NSString *const landscapeIncredible;
 
+extern NSString *const imageNotAvailable;
+
 @end
 
 NS_ASSUME_NONNULL_END

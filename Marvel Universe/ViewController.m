@@ -7,13 +7,18 @@
 //
 
 #import "ViewController.h"
+
 #import "MarvelAPIClient.h"
 #import "JSONDownloader.h"
 #import "imageVarients.h"
 
+#import "Character.h"
+
 @interface ViewController ()
 
 @property (weak, nonatomic) IBOutlet UIImageView *coverImage;
+
+@property NSMutableArray *characterArray;
 
 @end
 
@@ -24,21 +29,27 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    self.characterArray = [[NSMutableArray alloc] init];
     MarvelAPIClient *apiClient = [[MarvelAPIClient alloc] init];
     JSONDownloader *downloader = [[JSONDownloader alloc] init];
     
-    [apiClient getCharactersURL:20 withOffset:0];
-    [apiClient getThumbnailURL:@"http://i.annihil.us/u/prod/marvel/i/mg/3/40/4bb4680432f73" withVariant: portraitSmall withExtension:@"jpg"];
-    
-    [downloader downloadData:[apiClient getCharactersURL:100 withOffset:0] comletionHandler:^(NSData * _Nonnull data, NSError * _Nonnull error)
+    [downloader downloadData:[apiClient getCharactersURL:30 withOffset:0] comletionHandler:^(NSData * _Nonnull data, NSError * _Nonnull error)
     {
         if (error == NULL)
         {
             NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
-            NSString *code = [dictionary valueForKey:@"code"];
-            NSLog(@"HTTP Error Code: %@",code);
-            NSString *status = [dictionary valueForKey:@"status"];
-            NSLog(@"HTTP Error description: %@",status);
+            //NSString *code = [dictionary valueForKey:@"code"];
+            //NSLog(@"HTTP Error Code: %@",code);
+            //NSString *status = [dictionary valueForKey:@"status"];
+            //NSLog(@"HTTP Error description: %@",status);
+            
+            NSArray *dictionaries = [dictionary valueForKeyPath:@"data.results"];
+            
+            for(NSDictionary *dict in dictionaries)
+            {
+                Character *character = [Character characterWithDictionary:dict];
+                [self.characterArray addObject:character];
+            }
         }
         else
         {
@@ -52,9 +63,25 @@
             }
             
         }
+        
+        [self downloadImages:downloader withClient:apiClient];
 
     }];
     
+}
+
+- (void) downloadImages: (JSONDownloader *) downloader withClient: (MarvelAPIClient *) client
+{
+    for (Character *marvelCharacter in self.characterArray)
+    {
+        NSURL *test = [client getThumbnailURL:marvelCharacter.thumbnailPath withVariant:portraitUncanny withExtension:marvelCharacter.thumbnailExtension];
+    
+        [downloader downloadData:test comletionHandler:^(NSData * _Nonnull data, NSError * _Nonnull error)
+        {
+            marvelCharacter.thumbnail = [UIImage imageWithData:data];
+        }];
+    
+    }
 }
 
 

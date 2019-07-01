@@ -20,6 +20,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) NSString *thumbnailExtension;
 @property (strong, nonatomic) UIImage *thumbnail;
 
++ (instancetype) characterWithDictionary:(NSDictionary *) dictionary;
+
 @end
 
 NS_ASSUME_NONNULL_END
