@@ -9,6 +9,8 @@
 #import "CharacterCollectionViewController.h"
 #import "CharacterCollectionViewCell.h"
 
+#import "DetailedViewController.h"
+
 #import "imageVarients.h"
 
 @interface CharacterCollectionViewController ()
@@ -155,6 +157,22 @@ static NSString * const reuseIdentifier = @"Cell";
         
         
     }
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+    
+    if([segue.identifier isEqualToString:@"showDetail"])
+    {
+        NSIndexPath *selectedIndexPath = [self.collectionView indexPathsForSelectedItems][0];
+        Character *marvelCharacter = self.characterArray[selectedIndexPath.row];
+        DetailedViewController *detailedViewController = segue.destinationViewController;
+        detailedViewController.marvelCharacter = marvelCharacter;
+        
+    }
+    
 }
 
 #pragma mark <UICollectionViewDelegate>

@@ -23,6 +23,7 @@
 		9BCC9CF922C99DBC007B0BB2 /* MarvelAPIError.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BCC9CF822C99DBC007B0BB2 /* MarvelAPIError.m */; };
 		9BCC9CFD22D0E9CA007B0BB2 /* CharacterCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BCC9CFC22D0E9CA007B0BB2 /* CharacterCollectionViewController.m */; };
 		9BCC9D0122D10EEA007B0BB2 /* CharacterCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BCC9D0022D10EEA007B0BB2 /* CharacterCollectionViewCell.m */; };
+		9BCC9D0722D2A458007B0BB2 /* DetailedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BCC9D0622D2A458007B0BB2 /* DetailedViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,6 +75,8 @@
 		9BCC9CFC22D0E9CA007B0BB2 /* CharacterCollectionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CharacterCollectionViewController.m; sourceTree = "<group>"; };
 		9BCC9CFF22D10EEA007B0BB2 /* CharacterCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CharacterCollectionViewCell.h; sourceTree = "<group>"; };
 		9BCC9D0022D10EEA007B0BB2 /* CharacterCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CharacterCollectionViewCell.m; sourceTree = "<group>"; };
+		9BCC9D0522D2A458007B0BB2 /* DetailedViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailedViewController.h; sourceTree = "<group>"; };
+		9BCC9D0622D2A458007B0BB2 /* DetailedViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailedViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -189,6 +192,8 @@
 				9B2C7E0422BFE258001E188E /* ViewController.m */,
 				9BCC9CFB22D0E9CA007B0BB2 /* CharacterCollectionViewController.h */,
 				9BCC9CFC22D0E9CA007B0BB2 /* CharacterCollectionViewController.m */,
+				9BCC9D0522D2A458007B0BB2 /* DetailedViewController.h */,
+				9BCC9D0622D2A458007B0BB2 /* DetailedViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -342,6 +347,7 @@
 				9BCC9CFD22D0E9CA007B0BB2 /* CharacterCollectionViewController.m in Sources */,
 				9B2C7E1322BFE25A001E188E /* main.m in Sources */,
 				9B2C7E3C22C031A8001E188E /* MarvelAPIClient.m in Sources */,
+				9BCC9D0722D2A458007B0BB2 /* DetailedViewController.m in Sources */,
 				9B2C7E0222BFE258001E188E /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
