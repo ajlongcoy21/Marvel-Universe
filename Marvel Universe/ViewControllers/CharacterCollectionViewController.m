@@ -82,11 +82,23 @@ static NSString * const reuseIdentifier = @"Cell";
 {
     // Check to see if we need to download the other characters
     
+    NSLog(@"Collection View Cell Will Dsiplay: %i", indexPath.row);
+    NSLog(@"Current Offset: %i", self.currentOffset.intValue);
+    NSLog(@"Total Number of Characters: %i", self.totalNumberOfCharacters.intValue);
+    
+    if (self.downloadInProgress)
+    {
+        NSLog(@"Download Progress: YES");
+    }
+    else
+    {
+        NSLog(@"Download Progress: NO");
+    }
+    
+    
     if (self.currentOffset.intValue < self.totalNumberOfCharacters.intValue && indexPath.row > (self.currentOffset.intValue - 20) && self.downloadInProgress == FALSE)
     {
         self.downloadInProgress = true;
-        
-        self.currentOffset = [NSNumber numberWithInt:self.currentOffset.intValue+100];
         
         [self.downloader downloadData:[self.apiClient getCharactersURL:100 withOffset:self.currentOffset.intValue+100] comletionHandler:^(NSData * _Nonnull data, NSError * _Nonnull error)
          {
@@ -108,6 +120,7 @@ static NSString * const reuseIdentifier = @"Cell";
                          
                          [self.collectionView reloadData];
                          self.downloadInProgress = false;
+                         self.currentOffset = [NSNumber numberWithInt:self.currentOffset.intValue+100];
                          
                      });
                      
@@ -115,6 +128,8 @@ static NSString * const reuseIdentifier = @"Cell";
              }
              else
              {
+                 self.downloadInProgress = false;
+                 
                  if ([error.domain.uppercaseString  isEqual: @"MARVEL UNIVERSE ERROR"])
                  {
                      [self.apiClient alertNotificationForUser:error.domain.uppercaseString withMessage:error.localizedDescription withViewController:self];
